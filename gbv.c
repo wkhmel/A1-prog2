@@ -415,15 +415,26 @@ int ordem_tamanho(const void *a, const void *b) {
     const Document *docA = (const Document *)a;
     const Document *docB = (const Document *)b;
 
-    /* subtrai do valor que tem mais bytes o valor que tem menos bytes */
-    return (docA->size > docB->size) - (docA->size < docB->size);
+	/* estabelecendo uma ordem entre a e b, de 0 se ambos forem iguais, 1 se o primeiro for maior e -1 c.c. */
+    if (docA->size == docB->size)
+		return 0;
+	else if (docA->size > docB->size)
+		return 1;
+	else
+		return -1;
 }
 
 int ordem_cronologica(const void *a, const void *b) {
     const Document *docA = (const Document *)a;
     const Document *docB = (const Document *)b;
-    /* retorna a diferença de data (do que é mais recente para o mais antigo)*/
-    return (docA->date > docB->date) - (docA->date < docB->date);
+
+	/* mesma ideia do ordem_tamanho */
+    if (docA->date == docB->date)
+		return 0;
+	else if (docA->date > docB->date)
+		return 1;
+	else
+		return -1;
 }
 
 int gbv_order(Library *lib, const char *archive, const char *criteria) {
