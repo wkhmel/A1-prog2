@@ -50,6 +50,7 @@ int gbv_open(Library *lib, const char *filename) {
         }
         /* depois de criada, ainda assim pode dar erro */
         arquivo = fopen(filename, "rb");
+		
         if (!arquivo) {
             fprintf(stderr, "Erro ao abrir o arquivo.\n");
             return -1;  
@@ -83,6 +84,7 @@ int gbv_open(Library *lib, const char *filename) {
         /* do arquivo p lib->docs */
 		if (fread(lib->docs, sizeof(Document), sb.qtd_doc, arquivo) != sb.qtd_doc) {
         	fprintf(stderr, "Erro ao ler o arquivo.\n");
+			fclose(arquivo);
         	free(lib->docs);
         	return -1;
     	}
