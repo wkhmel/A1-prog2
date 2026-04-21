@@ -48,6 +48,18 @@ int gbv_list(const Library *lib);
 /* entrada: ponteiro pra biblioteca, nome do arquivo container e nome do documento. saída: 0 em sucesso e -1 em erro */
 int gbv_view(const Library *lib, const char *archive, const char *docname);
 
+/* função pra comparar os documentos em ordem alfabetica*/
+/* recebe um ponteiro para dois documentos (genéricos) e retorna um valor q representa a ordem (positivo, negativo ou zero) */
+int ordem_alfabetica(const void *a, const void *b);
+
+/* função q compara os docs em ordem de tamanho (menor pra maior)*/
+/* recebe um ponteiro para dois documentos (genéricos) e retorna um valor na mesma lógica da função anterior */
+int ordem_tamanho(const void *a, const void *b);
+
+/* função q compara os docs em ordem cronológica (mais antigo pra mais novo)*/
+/* recebe um ponteiro para dois documentos (genéricos) e retorna um valor na mesma lógica da função anterior */
+int ordem_cronologica(const void *a, const void *b);
+
 /* ordena os documentos da biblioteca com base em um critério, que pode ser ordem alfabética, tamanho ou ordem cronológica */
 /* entrada: ponteiro para a biblioteca, nome do arquivo container e critério de ordenação. saída: 0 em sucesso e -1 em erro */
 int gbv_order(Library *lib, const char *archive, const char *criteria);
