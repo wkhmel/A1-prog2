@@ -18,8 +18,8 @@ Modificações feitas:
 
 	-No header gbv.h, adicionei um novo parâmetro para as funções gbv_remove e gbv_view: o const *char archive, para remover o documento do disco na primeira função* e para visualizar todos os documentos na última. Também fiz as devidas alterações na main.c.
 	
-   -Também removi a função int_order do gbv.h e da main.c.
-   
+   -Também removi a função int_order do gbv.h e da main.c
+
   -Coloquei no gbv.c e gbv.h as funções auxiliares da gbv_order, que são as que verificam qual é a ordem que a função qsort deve usar para reordenar os documentos binários. As funções são: int ordem_cronologica, int ordem_tamanho e int ordem_alfabetica. Elas fazem comparações de string ou tamanho pra ver qual vem primeiro e retorna o valor dependendo da função. No caso da ordenação alfabética, como é feita uma strcmp, retorna zero se forem iguais, por exemplo.
   
 	-Criei uma função auxiliar no próprio gbv.c chamada gbv_find, que serve para achar em que índice está um determinado documento. Ela foi útil em três funções: no gbv_add (para procurar se já há um documento com o mesmo nome), no gbv_remove (para procurar em que índice está o documento a ser removido do gbv, se é que ele está nele) e no gbv_view (para procurar o documento que quero visualizar).
@@ -27,6 +27,7 @@ Modificações feitas:
 	-O enunciado do trabalho pede para fazer apenas uma remoção lógica, mas pelo que nos foi passado em aula, poderíamos fazer modificações no trabalho. Da forma que eu fiz, o documento a ser removido sai tanto da biblioteca quanto do arquivo físico, a fim de não estar mais lá quando eu uso a função gbv_view (cujos parâmetros também modifiquei).
 
 Dificuldades enfrentadas:
+
 	-Os próprios conceitos do trabalho (metadados da biblioteca versus dados no arquivo físico gbv) eram muito abstratos e foi difícil de convertê-los em código. Era muito confuso saber para que servia criar o superbloco, quando escrever nele ou quando ler, e também entender a diferença entre usar uma informação que está nele ou na biblioteca (exemplo: lib->count x sb.qtd_doc).
 	
 	-Foram necessárias muitas verificações, porque quase todas as operações (fopen, fwrite, fread) podem dar errado. No entanto, o fato de eu ter colocado tantos testes com suas respectivas mensagens de erro me ajudou a identificar em que parte do meu código eventuais erros estavam.
